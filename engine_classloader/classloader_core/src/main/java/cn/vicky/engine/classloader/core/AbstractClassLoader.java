@@ -1,25 +1,3 @@
-/**
- * JCL (Jar Class Loader)
- *
- * Copyright (C) 2011 Kamran Zafar
- *
- * This file is part of Jar Class Loader (JCL). Jar Class Loader (JCL) is free
- * software: you can redistribute it and/or modify it under the terms of the GNU
- * Lesser General Public License as published by the Free Software Foundation,
- * either version 3 of the License, or (at your option) any later version.
- *
- * JarClassLoader is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- * details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with JCL. If not, see <http://www.gnu.org/licenses/>.
- *
- * @author Kamran Zafar
- *
- * Contact Info: Email: xeus.man@gmail.com Web: http://xeustech.blogspot.com
- */
 package cn.vicky.engine.classloader.core;
 
 import cn.vicky.engine.classloader.core.exception.JclException;
@@ -37,10 +15,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Abstract class loader that can load classes from different resources
+ * 抽象类加载器,能够从不同的资源方式加载classes
  *
- * @author Kamran Zafar
- *
+ * @author Vicky.H
+ * @email ecliser@163.com
  */
 @SuppressWarnings("unchecked")
 public abstract class AbstractClassLoader extends ClassLoader {
@@ -54,7 +32,7 @@ public abstract class AbstractClassLoader extends ClassLoader {
     private final ProxyClassLoader osgiBootLoader = new OsgiBootLoader();
 
     /**
-     * Build a new instance of AbstractClassLoader.java.
+     * 构建一个新的AbstractClassLoader实例
      *
      * @param parent parent class loader
      */
@@ -64,14 +42,14 @@ public abstract class AbstractClassLoader extends ClassLoader {
     }
 
     /**
-     * No arguments constructor
+     * 无参够着函数
      */
     public AbstractClassLoader() {
         super();
         addDefaultLoader();
     }
 
-    protected void addDefaultLoader() {
+    protected final void addDefaultLoader() {
         loaders.add(systemLoader);
         loaders.add(parentLoader);
         loaders.add(currentLoader);
@@ -93,14 +71,12 @@ public abstract class AbstractClassLoader extends ClassLoader {
     }
 
     /**
-     * Overrides the loadClass method to load classes from other resources,
-     * JarClassLoader is the only subclass in this project that loads classes
-     * from jar files
+     * 覆盖JDK ClassLoader 的 loadClass函数 JarClassLoader仅仅是其子类,用于项目通过jar文件加载classes
      *
      * @param className
      * @param resolveIt
-     * @return 
-     * @throws java.lang.ClassNotFoundException 
+     * @return
+     * @throws java.lang.ClassNotFoundException
      * @see java.lang.ClassLoader#loadClass(java.lang.String, boolean)
      */
     @Override
@@ -137,11 +113,10 @@ public abstract class AbstractClassLoader extends ClassLoader {
     }
 
     /**
-     * Overrides the getResource method to load non-class resources from other
-     * sources, JarClassLoader is the only subclass in this project that loads
-     * non-class resources from jar files
+     * 覆盖JDK ClassLoader 的 getResource 用于加载非Class的资源
+     * JarClassLoader仅仅是其子类,用于项目通过非class文件加载资源
      *
-     * @return 
+     * @return
      * @see java.lang.ClassLoader#getResource(java.lang.String)
      */
     @Override
@@ -175,11 +150,10 @@ public abstract class AbstractClassLoader extends ClassLoader {
     }
 
     /**
-     * Overrides the getResourceAsStream method to load non-class resources from
-     * other sources, JarClassLoader is the only subclass in this project that
-     * loads non-class resources from jar files
+     * 覆盖JDK ClassLoader 的 getResourceAsStream 用于加载非Class的资源
+     * JarClassLoader仅仅是其子类,用于项目通过.jar文件中的非class文件加载资源
      *
-     * @return 
+     * @return
      * @see java.lang.ClassLoader#getResourceAsStream(java.lang.String)
      */
     @Override
@@ -213,8 +187,7 @@ public abstract class AbstractClassLoader extends ClassLoader {
     }
 
     /**
-     * System class loader
-     *
+     * 系统类加载器
      */
     class SystemLoader extends ProxyClassLoader {
 
@@ -274,7 +247,7 @@ public abstract class AbstractClassLoader extends ClassLoader {
     }
 
     /**
-     * Parent class loader
+     * 父加载器
      *
      */
     class ParentLoader extends ProxyClassLoader {
@@ -333,7 +306,7 @@ public abstract class AbstractClassLoader extends ClassLoader {
     }
 
     /**
-     * Current class loader
+     * 当前class加载器
      *
      */
     class CurrentLoader extends ProxyClassLoader {
@@ -394,7 +367,7 @@ public abstract class AbstractClassLoader extends ClassLoader {
     }
 
     /**
-     * Current class loader
+     * 当前线程类加载器
      *
      */
     class ThreadContextLoader extends ProxyClassLoader {
@@ -455,7 +428,7 @@ public abstract class AbstractClassLoader extends ClassLoader {
     }
 
     /**
-     * Osgi boot loader
+     * Osgi boot 加载器
      *
      */
     public final class OsgiBootLoader extends ProxyClassLoader {
