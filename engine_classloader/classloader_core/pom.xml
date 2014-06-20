@@ -3,12 +3,13 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cn.vicky</groupId>
-        <artifactId>engine</artifactId>
+        <artifactId>engine_classloader</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>engine_classloader</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>classloader_core</module>
-    </modules>
+    <artifactId>classloader_core</artifactId>
+    <packaging>jar</packaging>
+    <properties>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+    </properties>
 </project>
