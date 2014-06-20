@@ -12,8 +12,8 @@ import java.io.ObjectOutputStream;
 /**
  * This class has some important utility methods commonly required when using
  * JCL
- * 
- * @author Kamran
+ * @author Vicky.H
+ * @email  ecliser@163.com
  * 
  */
 @SuppressWarnings("unchecked")
@@ -76,10 +76,10 @@ public class JclUtils {
     /**
      * Casts the object ref to the passed interface class ref and returns it
      * 
+     * @param <T>
      * @param object
      * @param clazz
      * @return T reference
-     * @return casted
      */
     public static <T> T cast(Object object, Class<T> clazz) {
         return (T) toCastable( object, clazz, null );
@@ -88,11 +88,11 @@ public class JclUtils {
     /**
      * Casts the object ref to the passed interface class ref and returns it
      * 
+     * @param <T>
      * @param object
      * @param clazz
      * @param cl
      * @return T reference
-     * @return casted
      */
     public static <T> T cast(Object object, Class<T> clazz, ClassLoader cl) {
         return (T) toCastable( object, clazz, cl );
@@ -115,9 +115,7 @@ public class JclUtils {
     public static Object clone(Object original) {
         Object clone = null;
 
-        try {
-            // Increased buffer size
-            ByteArrayOutputStream bos = new ByteArrayOutputStream( 5120 );
+        try (ByteArrayOutputStream bos = new ByteArrayOutputStream( 5120 )) { // Increased buffer size
             ObjectOutputStream out = new ObjectOutputStream( bos );
             out.writeObject( original );
             out.flush();
@@ -127,8 +125,7 @@ public class JclUtils {
             clone = in.readObject();
 
             in.close();
-            bos.close();
-        } catch (Exception e) {
+        }catch (Exception e) {
             throw new JclException( e );
         }
 
