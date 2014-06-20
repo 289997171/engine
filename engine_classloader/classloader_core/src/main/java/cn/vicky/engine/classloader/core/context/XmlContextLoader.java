@@ -76,7 +76,7 @@ public class XmlContextLoader implements JclContextLoader {
     /**
      * Loads the JCL context from XML file
      *
-     * @see org.xeustechnologies.jcl.context.JclContextLoader#loadContext()
+     * @see cn.vicky.engine.classloader.core.context.JclContextLoader#loadContext()
      */
     @Override
     public void loadContext() {
@@ -149,7 +149,7 @@ public class XmlContextLoader implements JclContextLoader {
     /**
      * Unloads the context
      *
-     * @see org.xeustechnologies.jcl.context.JclContextLoader#unloadContext()
+     * @see cn.vicky.engine.classloader.core.context.JclContextLoader#unloadContext()
      */
     @Override
     public void unloadContext() {

@@ -34,7 +34,7 @@ public class WebAppPathResolver implements PathResolver {
     /**
      * Resolves path to jar files and folder in a web application
      * 
-     * @see org.xeustechnologies.jcl.utils.PathResolver#resolvePath(java.lang.String)
+     * @see cn.vicky.engine.classloader.core.utils.PathResolver#resolvePath(java.lang.String)
      */
     @Override
     public Object[] resolvePath(String path) {
